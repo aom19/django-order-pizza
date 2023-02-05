@@ -20,7 +20,7 @@ class OrderDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['size', 'flavour', 'quantity', 'order_status', 'created_at', 'updated_at']
+        fields = ['id','size', 'flavour', 'quantity', 'order_status', 'created_at', 'updated_at']
 
 
 class OrderStatusUpadateSerializer(serializers.ModelSerializer):
