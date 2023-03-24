@@ -1,12 +1,23 @@
-version: '1'
+version: '3.7'
 
 services:
-  web :
-    build: .
+  django_gunicorn:
+    volumes:
+        - static:/static
+    env_file:
+      - .env
+    build:
+      context: .
     ports:
         - "8000:8000"
+
+  nginx:
+    build: ./nginx
     volumes:
-        - .:/app
-    environment:
-        - DEBUG=1
-    command: python manage.py runserver 0.0.0.0:8000
+      - static:/static
+    ports:
+        - "80:80"
+    depends_on:
+        - django_gunicorn
+volumes:
+  static:
